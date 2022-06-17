@@ -8,6 +8,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "react-native-modal-dropdown": "^1.0.2",
     "@react-native-community/toolbar-android": "^0.2.1",
     "prop-types": "^15.5.10",
     "react-native-collapsible": "https://github.com/jameskaydev/react-native-collapsible.git",
