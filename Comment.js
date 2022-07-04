@@ -144,16 +144,16 @@ export default class Comment extends PureComponent {
                   onPress={this.handleLike}
                 >
                   <View style={{ flexDirection: "row", alignItems: 'center', width: 65 }}>
-                    <TouchableOpacity disabled={this.props.userVote === 'up'} onPress={() => this.props.upVotePress(this.props.id)} style={{ padding: 5 }}>
+                    <TouchableOpacity onPress={() => this.props.upVotePress(this.props.id, this.props.userVote)} style={{ padding: 5 }}>
                       {this.props.userVote === 'up'
                         ? <Image style={{ width: 17, height: 17 }} source={require('./top-arrow-fill.png')} />
                         : <Image style={{ width: 17, height: 17 }} source={require('./top-arrow.png')} />
                       }
                     </TouchableOpacity>
-                    <Text style={styles.vote}>
+                    <Text style={[styles.vote, { color: this.props.userVote == 'up' ? '#ff460f' : this.props.userVote == 'down' ? '#017ad7' : '#bcbcbc' }]}>
                       {this.props.voteCount}
                     </Text>
-                    <TouchableOpacity disabled={this.props.userVote === 'down'} onPress={() => this.props.downVotePress(this.props.id)} style={{ padding: 5 }}>
+                    <TouchableOpacity onPress={() => this.props.downVotePress(this.props.id, this.props.userVote)} style={{ padding: 5 }}>
                       {this.props.userVote === 'down'
                         ? <Image style={{ width: 17, height: 17 }} source={require('./bottom-arrow-fill.png')} />
                         : <Image style={{ width: 17, height: 17 }} source={require('./bottom-arrow.png')} />
