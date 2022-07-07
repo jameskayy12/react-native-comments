@@ -11,7 +11,8 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Modal,
-  Alert
+  Alert,
+  TextInput
 } from "react-native";
 import Octicons from 'react-native-vector-icons/Octicons'
 import PropTypes from "prop-types";
@@ -27,7 +28,9 @@ export default class Comment extends PureComponent {
     super(props);
 
     this.state = {
-      menuVisible: false
+      menuVisible: false,
+      isEditing: false,
+      text: this.props.body,
     };
 
     this.handleReport = this.handleReport.bind(this);
@@ -38,6 +41,7 @@ export default class Comment extends PureComponent {
     this.handleUsernameTap = this.handleUsernameTap.bind(this);
     this.handleLikesTap = this.handleLikesTap.bind(this);
     this.onSelect = this.onSelect.bind(this);
+    this.submitOnPress = this.submitOnPress.bind(this)
 
   }
 
@@ -96,6 +100,10 @@ export default class Comment extends PureComponent {
   }
 
   onSelect(index, value) {
+    if (value == 'Edit') {
+      this.setState({ isEditing: true })
+      return
+    }
     if (value == 'Report') {
       this.props.reportCommentPress(this.props.id)
       return
@@ -104,6 +112,13 @@ export default class Comment extends PureComponent {
       this.props.deleteAction(this.props.id)
       return
     }
+  }
+
+  submitOnPress() {
+    this.props.editSubmit(this.state.text, this.props.data.id)
+    this.setState({
+      isEditing: false
+    })
   }
 
   render() {
@@ -120,13 +135,24 @@ export default class Comment extends PureComponent {
                 <TimeAgo style={styles.time} time={this.props.updatedAt} />
               </View>
             </View>
-            <Text style={styles.body}>{this.props.body}</Text>
+            {!this.state.isEditing && <Text style={styles.body}>{this.props.body}</Text>}
           </View>
-          <View style={[styles.rightActionBar]}>
+
+          {this.state.isEditing && <View style={styles.isEditingContainer}>
+            <TextInput multiline onChangeText={(value) => this.setState({ text: value })} value={this.state.text} style={styles.editTextInput}>
+            </TextInput>
+            <TouchableOpacity onPress={() => this.submitOnPress()} style={styles.editButton}>
+              <Text style={{ fontWeight: 'bold', color: '#ffffff' }}>
+                {'Edit'}
+              </Text>
+            </TouchableOpacity>
+          </View>}
+
+          {!this.state.isEditing && <View style={[styles.rightActionBar]}>
             <View></View>
             <View style={styles.bottomRightActionBar}>
               <View style={{ marginRight: 12 }}>
-                <ModalDropdown onSelect={this.onSelect} dropdownStyle={{ height: this.props.isOwner() ? 70 : 35 }} options={this.props.isOwner() ? ['Report', 'Delete'] : ['Report']}>
+                <ModalDropdown onSelect={this.onSelect} dropdownStyle={{ height: this.props.isOwner() ? 70 : 35 }} options={this.props.isOwner() ? ['Report', 'Edit', 'Delete'] : ['Report']}>
                   <Feather name='dots-three-vertical' size={16} color={'#8a8a8a'} />
                 </ModalDropdown>
               </View>
@@ -163,47 +189,8 @@ export default class Comment extends PureComponent {
                 </TouchableHighlight>
               ) : null}
             </View>
-          </View>
+          </View>}
         </View>
-        {/* {this.state.menuVisible ? (
-            <View style={styles.menu}>
-              {this.props.canEdit ? (
-                <TouchableOpacity
-                  style={styles.menuItem}
-                  onPress={this.handleEdit}
-                >
-                  <Text style={styles.menuText}>Edit</Text>
-                </TouchableOpacity>
-              ) : null}
-              {this.props.reportAction ? (
-                <TouchableOpacity
-                  style={styles.menuItem}
-                  onPress={this.handleReport}
-                >
-                  {this.props.reported ? (
-                    <Text
-                      style={[
-                        styles.menuText,
-                        { fontStyle: "italic", fontSize: 11 }
-                      ]}
-                    >
-                      Reported
-                    </Text>
-                  ) : (
-                    <Text style={styles.menuText}>Report</Text>
-                  )}
-                </TouchableOpacity>
-              ) : null}
-              {this.props.canEdit ? (
-                <TouchableOpacity
-                  style={styles.menuItem}
-                  onPress={this.handleDelete}
-                >
-                  <Text style={styles.menuText}>Delete</Text>
-                </TouchableOpacity>
-              ) : null}
-            </View>
-          ) : null} */}
       </View>
     );
   }
