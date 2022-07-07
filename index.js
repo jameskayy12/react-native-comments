@@ -169,9 +169,10 @@ export default class Comments extends PureComponent {
     return (
       <Comment
         data={c}
+        editSubmit={this.props.editSubmit}
         reportCommentPress={this.props.reportCommentPress}
         deleteAction={this.props.deleteAction}
-        isOwner={()=>this.props.isOwner(c)}
+        isOwner={() => this.props.isOwner(c)}
         userVote={c.userVote}
         upVotePress={this.props.upVotePress}
         downVotePress={this.props.downVotePress}
