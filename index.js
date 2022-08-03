@@ -84,7 +84,8 @@ export default class Comments extends PureComponent {
   }
 
   isExpanded(id) {
-    return this.state.expanded.indexOf(id) !== -1;
+    return true
+    // return this.state.expanded.indexOf(id) !== -1;
   }
 
   toggleExpand(c, focus) {
@@ -302,12 +303,12 @@ export default class Comments extends PureComponent {
                     item[this.props.childPropName][0]
                   )}{" "}
                 </Text> */}
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <View style={{ width: 10, height: 0.6, backgroundColor: '#bcbcbc', marginRight: 4, bottom: 5 }} />
                   <Text style={styles.repliedText}>
                     {this.isExpanded(this.props.keyExtractor(item)) ? 'Hide replies' : `View replies(${this.props.childrenCountExtractor(item)})`}
                   </Text>
-                </View>
+                </View> */}
               </View>
             </TouchableHighlight>
           ) : null}
