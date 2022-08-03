@@ -123,7 +123,7 @@ export default class Comment extends PureComponent {
 
   render() {
     return (
-      <View style={styles.commentContainer}>
+      <View style={[styles.commentContainer, { marginVertical: !this.props.child ? 7 : 0 }]}>
         {this.props.child && <View style={styles.verticalLineView}></View>}
         <View style={[styles.right]}>
           <View style={styles.rightContent}>
@@ -152,7 +152,7 @@ export default class Comment extends PureComponent {
             <View></View>
             <View style={styles.bottomRightActionBar}>
               <View style={{ marginRight: 12 }}>
-                <ModalDropdown onSelect={this.onSelect} dropdownStyle={{ height: this.props.isOwner() ? 70 : 35 }} options={this.props.isOwner() ? ['Report', 'Edit', 'Delete'] : ['Report']}>
+                <ModalDropdown onSelect={this.onSelect} dropdownStyle={{ height: this.props.isOwner() ? 105 : 35 }} options={this.props.isOwner() ? ['Report 🏴', 'Edit     🖋️', 'Delete 🗑️'] : ['Report 🏴']}>
                   <Feather name='dots-three-vertical' size={16} color={'#8a8a8a'} />
                 </ModalDropdown>
               </View>
