@@ -2,13 +2,38 @@ import { StyleSheet, PixelRatio } from "react-native";
 
 const styles = StyleSheet.create({
   commentContainer: {
-    marginBottom: 10,
     flexDirection: "row-reverse",
     justifyContent: 'center',
   },
   left: {
     // padding: 5 ,
     backgroundColor: 'purple'
+  },
+  isEditingContainer: {
+    width: '100%',
+    height: 55,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editTextInput: {
+    borderRadius: 5,
+    flex: 1,
+    marginRight: 15,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#bcbcbc',
+    color: '#bcbcbc',
+    paddingLeft: 7,
+  },
+  editButton: {
+    width: 40,
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: '#017ad7',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     height: 30,
@@ -17,7 +42,7 @@ const styles = StyleSheet.create({
   },
   verticalLineView: {
     width: 0.7,
-    height: '70%',
+    height: '100%',
     backgroundColor: '#bcbcbc',
     position: 'absolute',
     right: 0
@@ -29,10 +54,11 @@ const styles = StyleSheet.create({
   rightContent: {
     borderRadius: 10,
     padding: 5,
-    backgroundColor: "#00000"
+    backgroundColor: "#00000",
   },
   rightContentTop: {
-    flexDirection: "row" ,
+    flexDirection: "row",
+    // backgroundColor: 'red',
   },
 
   name: {
@@ -52,6 +78,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    // backgroundColor: 'blue',
   },
   actionButton: {
   },
@@ -67,8 +94,8 @@ const styles = StyleSheet.create({
   },
   time: {
     fontSize: 12,
-    marginLeft : 10 ,
-    top : -2 ,
+    marginLeft: 10,
+    top: -2,
     alignSelf: 'center',
     color: "#5C5C5C",
   },
