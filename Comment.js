@@ -101,7 +101,7 @@ export default class Comment extends PureComponent {
 
   onSelect(index, value) {
     if (value == 'Edit     🖋️') {
-      this.setState({ isEditing: true })
+      this.props.startEditing(this.props.id)
       return
     }
     if (value == 'Report 🏴') {
