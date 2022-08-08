@@ -169,6 +169,7 @@ export default class Comments extends PureComponent {
   generateComment(c) {
     return (
       <Comment
+        startEditing={this.props.startEditing}
         data={c}
         editSubmit={this.props.editSubmit}
         reportCommentPress={this.props.reportCommentPress}
