@@ -100,15 +100,15 @@ export default class Comment extends PureComponent {
   }
 
   onSelect(index, value) {
-    if (value == 'Edit') {
+    if (value == 'Edit     🖋️') {
       this.setState({ isEditing: true })
       return
     }
-    if (value == 'Report') {
+    if (value == 'Report 🏴') {
       this.props.reportCommentPress(this.props.id)
       return
     }
-    if (value == 'Delete') {
+    if (value == 'Delete 🗑️') {
       this.props.deleteAction(this.props.id)
       return
     }
