@@ -101,7 +101,10 @@ export default class Comment extends PureComponent {
 
   onSelect(index, value) {
     if (value == 'Edit     🖋️') {
-      this.props.startEditing(this.props.id)
+      // this.props.body
+      // this.props.username
+      console.log(this.props, 'this.props');
+      this.props.startEditing(this.props.id, this.props.body)
       return
     }
     if (value == 'Report 🏴') {
